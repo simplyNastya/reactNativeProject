@@ -1,11 +1,16 @@
 import { TouchableOpacity, Image, StyleSheet, Text, TextInput, View, Platform } from "react-native"
+import photoAdd from '../assets/btn-add.png'
+import photoRemove from '../assets/btn-remove.png'
+import userPhoto from '../assets/user-photo.jpg'
 
 const RegistrationScreen = () => {
     return (
         <View style={styles.section}>
             <View style={styles.wrapper}>
-                <TextInput placeholder="Photo" style={styles.photo}/>
-                <Image style={styles.svg}/>
+                <Image source={userPhoto} style={styles.photo} />
+                <TouchableOpacity style={styles.btnAdd}>
+                    <Image source={photoAdd} style={styles.svg}/>
+                </TouchableOpacity>
                 <Text style={styles.title}>Реєстрація</Text>
                 <TextInput placeholder="Логін" style={styles.input}/>
                 <TextInput placeholder="Адреса електронної пошти" style={styles.input}/>
@@ -33,12 +38,19 @@ const styles = StyleSheet.create({
     },
     photo: {
         position: 'absolute',
+        top: -50,
+        left: 150,
         width: 120,
         height: 120,
         backgroundColor: '#F6F6F6',
         borderRadius: 16,
     },
-    svg: {},
+    btnAdd: {
+        position: 'absolute',
+        top: 30,
+        left: 257,
+        backgroundColor: 'transparent',
+    },
     title: {
         marginTop: 32,
         marginBottom: 32,
