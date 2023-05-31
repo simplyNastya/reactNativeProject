@@ -14,7 +14,10 @@ const RegistrationScreen = () => {
                 <Text style={styles.title}>Реєстрація</Text>
                 <TextInput placeholder="Логін" style={styles.input}/>
                 <TextInput placeholder="Адреса електронної пошти" style={styles.input}/>
-                <TextInput placeholder="Пароль" style={styles.input}/>
+                <TextInput placeholder="Пароль" style={styles.input} />
+                <TouchableOpacity style={styles.btnShowPassword}>
+                    <Text style={styles.textShowPassword}>Показати</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.btn}>
                     <Text style={styles.btnText}>Зареєстуватися</Text>
                 </TouchableOpacity>
@@ -66,11 +69,23 @@ const styles = StyleSheet.create({
         marginRight: 'auto',
         marginBottom: 16,
         padding: 16,
+        fontFamily: 'RobotoRegular',
+        fontSize: 16,
         backgroundColor: '#F6F6F6',
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: '#E8E8E8',
         borderRadius: 8,
+    },
+    btnShowPassword: {
+        position: 'absolute',
+        top: 338,
+        left: 300,
+    },
+    textShowPassword: {
+        fontFamily: 'RobotoRegular',
+        fontSize: 16,
+        color: '#1B4371',
     },
     btn: {
         marginTop: 27,
