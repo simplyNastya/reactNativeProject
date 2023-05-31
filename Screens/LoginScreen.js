@@ -1,7 +1,4 @@
-import { View, StyleSheet, Image, TouchableOpacity, Text, TextInput } from "react-native"
-import photoAdd from '../assets/btn-add.png'
-import photoRemove from '../assets/btn-remove.png'
-import userPhoto from '../assets/user-photo.jpg'
+import { View, StyleSheet, TouchableOpacity, Text, TextInput } from "react-native"
 
 const LoginScreen = () => {
     return (
