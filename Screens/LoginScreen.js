@@ -1,12 +1,36 @@
+import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, TextInput } from "react-native"
 
 const LoginScreen = () => {
+
+    const [password, setPassword] = useState('')
+    const [focusedInput, setFocusedInput] = useState(null)
+
+    const handlePasswordChange = (text) => {
+        setPassword(text)
+    }
+    
+    const handleFocus = (inputName) => {
+        setFocusedInput(inputName)
+    }
+
+    const handleBlur = () => {
+        setFocusedInput(null)
+    }
+    
     return (
         <View style={styles.section}>
             <View style={styles.wrapper}>
                 <Text style={styles.title}>Увійти</Text>
-                <TextInput placeholder="Адреса електронної пошти" style={styles.input}/>
-                <TextInput placeholder="Пароль" style={styles.input} />
+                <TextInput placeholder="Адреса електронної пошти" onFocus={() => handleFocus('input2')} onBlur={handleBlur} style={[styles.input, focusedInput === 'input2' ? styles.inputFocused : null]}/>
+                <TextInput
+                    onChangeText={handlePasswordChange}
+                    value={password}
+                    secureTextEntry={true}
+                    onFocus={() => handleFocus('input3')}
+                    onBlur={handleBlur}
+                    placeholder="Пароль"
+                    style={[styles.input, focusedInput === 'input3' ? styles.inputFocused : null]} />
                 <TouchableOpacity style={styles.btnShowPassword}>
                     <Text style={styles.textShowPassword}>Показати</Text>
                 </TouchableOpacity>
@@ -60,6 +84,9 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: '#E8E8E8',
         borderRadius: 8,
+    },
+    inputFocused: {
+        borderColor: '#FF6C00',
     },
     btnShowPassword: {
         position: 'absolute',

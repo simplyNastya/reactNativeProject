@@ -1,9 +1,26 @@
+import React, { useState } from 'react';
 import { TouchableOpacity, Image, StyleSheet, Text, TextInput, View, Platform } from "react-native"
 import photoAdd from '../assets/btn-add.png'
 import photoRemove from '../assets/btn-remove.png'
 import userPhoto from '../assets/user-photo.jpg'
 
 const RegistrationScreen = () => {
+
+    const [password, setPassword] = useState('')
+    const [focusedInput, setFocusedInput] = useState(null)
+
+    const handlePasswordChange = (text) => {
+        setPassword(text)
+    }
+
+    const handleFocus = (inputName) => {
+        setFocusedInput(inputName)
+    }
+
+    const handleBlur = () => {
+        setFocusedInput(null)
+    }
+
     return (
         <View style={styles.section}>
             <View style={styles.wrapper}>
@@ -12,9 +29,24 @@ const RegistrationScreen = () => {
                     <Image source={photoAdd} style={styles.svg}/>
                 </TouchableOpacity>
                 <Text style={styles.title}>Реєстрація</Text>
-                <TextInput placeholder="Логін" style={styles.input}/>
-                <TextInput placeholder="Адреса електронної пошти" style={styles.input}/>
-                <TextInput placeholder="Пароль" style={styles.input} />
+                <TextInput 
+                    placeholder="Логін" 
+                    onFocus={() => handleFocus('input1')} 
+                    onBlur={handleBlur} 
+                    style={[styles.input, focusedInput === 'input1' ? styles.inputFocused : null]}/>
+                <TextInput 
+                    placeholder="Адреса електронної пошти" 
+                    onFocus={() => handleFocus('input2')} 
+                    onBlur={handleBlur} 
+                    style={[styles.input, focusedInput === 'input2' ? styles.inputFocused : null]}/>
+                <TextInput
+                    onChangeText={handlePasswordChange}
+                    value={password}
+                    secureTextEntry={true}
+                    onFocus={() => handleFocus('input3')}
+                    onBlur={handleBlur}
+                    placeholder="Пароль"
+                    style={[styles.input, focusedInput === 'input3' ? styles.inputFocused : null]} />
                 <TouchableOpacity style={styles.btnShowPassword}>
                     <Text style={styles.textShowPassword}>Показати</Text>
                 </TouchableOpacity>
@@ -76,6 +108,9 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: '#E8E8E8',
         borderRadius: 8,
+    },
+    inputFocused: {
+        borderColor: '#FF6C00',
     },
     btnShowPassword: {
         position: 'absolute',
